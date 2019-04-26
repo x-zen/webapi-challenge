@@ -17,15 +17,16 @@ router.post('/', (req, res) => {
   }
   else if (proCheck.project_id !== project_id) {
     res.status(400).json({ error: `The project with ID# ${project_id} was not found` })
+  } else {
+    db
+    .insert(action)
+    .then(newProject => {
+      res.status(201).json(newProject);
+    })
+    .catch(err => {
+      res.status(500).json({ error: 'There was an error while saving the action to the database.' });
+    })
   }
-  db
-  .insert(action)
-  .then(newProject => {
-    res.status(201).json(newProject);
-  })
-  .catch(err => {
-    res.status(500).json({ error: 'There was an error while saving the action to the database.' });
-  })
 })
 
 // GET - Returns an array of all actions in database
