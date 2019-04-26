@@ -1,14 +1,24 @@
-/*
-play this: https://www.youtube.com/watch?v=d-diB65scQU
+require('dotenv').config();
 
-Sing along:
+const express = require('express'); // import the express package
+const apiRouter = require('./api/apiRouter'); // import the post endpoints
 
-here's a little code I wrote, you might want to read it really slow, don't worry be happy
-in every line there may be trouble, but if you worry you make it double, don't worry, be happy
-ain't got no sense of what is REST? just concentrate on learning Express, don't worry, be happy
-your file is getting way too big, bring a Router and make it thin, don't worry, be crafty
-there is no data on that route, just write some code, you'll sort it out… don't worry, just API…
-I need this code, just don't know where, perhaps should make some middleware, don't worry, be happy
+const server = express(); // creates the server
 
-Go code!
-*/
+server.use(express.json()); // add this to make POST and PUT work
+
+
+// handle request to the root of the API
+server.get('/', (req, res) => {
+  const homeGreeting = process.env.GREET || 'Server up, no greeting available';
+  res.send(`${homeGreeting}`);
+});
+
+// assigns the route for api endpoints
+server.use('/api', apiRouter);
+
+
+const port = process.env.PORT || 5000;
+server.listen(port, () =>
+  console.log(`\n** Server running on http://localhost:${port} **`)
+);
