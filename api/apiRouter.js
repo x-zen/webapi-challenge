@@ -2,7 +2,7 @@
 const express = require('express'); // import the express package
 
 const projectsRouter = require('./projects/projectsRouter'); // import the project endpoints
-//const actionsRouter = require('./actions/actionsRouter'); // import the action endpoints
+const actionsRouter = require('./actions/actionsRouter'); // import the action endpoints
 
 const router = express.Router(); // creates the route
 
@@ -17,8 +17,8 @@ router.get('/', (req, res) => {
 // assigns the route for project endpoints
 router.use('/projects', projectsRouter);
 
-// assigns the route for post endpoints
-//router.use('/actions', actionsRouter);
+// assigns the route for actions endpoints
+router.use('/actions', actionsRouter);
 
 
 module.exports = router; // exports the route
