@@ -1,8 +1,8 @@
 /* --- Routes for '/api' --- */
 const express = require('express'); // import the express package
 
-//const projectsRouter = require('./projects/projectsRouter'); // import the user endpoints
-//const actionsRouter = require('./actions/actionsRouter'); // import the post endpoints
+const projectsRouter = require('./projects/projectsRouter'); // import the project endpoints
+//const actionsRouter = require('./actions/actionsRouter'); // import the action endpoints
 
 const router = express.Router(); // creates the route
 
@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 });
 
 // assigns the route for project endpoints
-//router.use('/projects', projectsRouter);
+router.use('/projects', projectsRouter);
 
 // assigns the route for post endpoints
 //router.use('/actions', actionsRouter);
